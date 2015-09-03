@@ -131,12 +131,15 @@ javascriptでは、IE用とわけないといけないところを一発解決�
 
 ### 準備
 
-1. どこにでもいいので index.html, script.js を作成
-1. http://learn.jquery.com/about-jquery/how-jquery-works/ にアクセス
-1. jQuery: The Basics を貼り付け
+1. githubからファイルを保存
+[ダウンロードファイル](https://github.com/KAZUKI1994/non_programmer_sample_slide/tree/step1)<br>
+このurlにアクセスし、右下のダウンロードをクリック。適当な場所に保存
+![html雛形](https://dl.dropboxusercontent.com/u/79953334/index_start.png)
 1. jQuery のソースを Google CDN から読み込み
- - https://developers.google.com/speed/libraries/#jquery
-1. body 終了直前に script.js を読み込み
+ - [url](https://developers.google.com/speed/libraries/#jquery)
+
+- ポイント
+	- jQueryのソースは、body終了直前に
 
 
 ### 書き方その1. 操作対象を指定する
@@ -154,7 +157,7 @@ $("#translucent")
 ```
 
 
-セレクタとは
+####セレクタとは
 
 **「CSS でスタイルを適用する対象を指定する仕組み」**
 
@@ -166,7 +169,6 @@ $("#id")      // ID
 $(".class")   //クラス
 $("a img")    // 子要素
 ```
-
 
 ### 書き方その2. オブジェクトを操作する
 
@@ -193,6 +195,8 @@ var num = $("div").length;
 
 - インタラクティブなコンテンツ作りに必要な仕組み
 - ユーザの操作や状態の変化など
+
+例：touch, scroll, mouseoverなどに応じてサイトを変化させる
 
 
 #### 構文
@@ -278,10 +282,66 @@ $(function() {
 });
 ```
 
+###実践
+####htmlに中身を入れる
+以下のコードをbodyタグの間に既に書き込まれているこの要素を変化させます。
+![html_img](https://dl.dropboxusercontent.com/u/79953334/html.png)
+ブラウザで見るとこんな感じ
+![html_img_screen](https://dl.dropboxusercontent.com/u/79953334/screen.png)
+
+####jQueryを動き出させるreadyイベントを定義しよう
+- 以下のコードをmain.jsにコピー
+
+```js
+$(function() {
+  
+});
+```
+- 一行目のこんばんわを赤くしよう。
+以下のコードをコピー
+
+```js
+$(".red").css("color", "red");
+```
+- 赤いボックスを透明にしよう
+
+```js
+$("#translucent").fadeTo(0, 0.5);
+```
+- クリックしたらボックスが青色になるようにしよう
+
+```js
+$("#tanslucent").click(function(){
+	$('#translucent').css("background", "blue");
+	});
+```
+
+
 ##jQuery実践
-####（参考）実際のスライドショー部分のHTML, CSS, Javascriptファイル一覧
-実際は、最初からゴリゴリ作成するのではなく、[OWL Carousel](http://owlgraphic.com/owlcarousel/#demo)というjQueryプラグインを使用してスライドショーを実装しています。
+###jQueryプラグイン「OWL Carousel」
+最初からゴリゴリ作成するのではなく、[OWL Carousel](http://owlgraphic.com/owlcarousel/#demo)というjQueryプラグインを使用してスライドショーを実装します。
 ![owl](https://dl.dropboxusercontent.com/u/79953334/owl_img.png)
+####jQueryプラグインとは
+ソフトウェアに機能を追加する小さなプログラムのことを指す場合が多い。（[IT用語辞書](http://e-words.jp/w/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3.html))<br>
+欲しい機能を実装するときにプラグインを探すと初心者でも簡単にリッチな機能が実装可能
+###早速実装
+####step1: [公式サイト](http://owlgraphic.com/owlcarousel)からダウンロード
+![owl_down](https://dl.dropboxusercontent.com/u/79953334/owl_download.png)
+ここから
+- owl.carousel.css
+- owl.carousel.min.js
+- owl.theme.css
+
+をコピーする。<br>
+####step2: htmlファイルに読みこむ
+2つのcssファイルをhtmlファイルに読み込み<br>
+これらをheaderが閉じる前に挿入する
+![owl_css](https://dl.dropboxusercontent.com/u/79953334/owl_css.png)
+1つのjsファイルをhtmlファイルに読み込み<br>
+先ほどjqueryファイルの下に挿入
+![owl_js](https://dl.dropboxusercontent.com/u/79953334/owl_js.png)
+
+###スライドショー部分のHTML, CSS, Javascriptファイル一覧
 index.html
 
 ```
@@ -486,7 +546,7 @@ img.img-circle.team-img {
 ```
 main.js
 
-```
+```js
 $(document).ready(function() {
   	  $("#team").owlCarousel({
   	 
@@ -505,6 +565,7 @@ $(document).ready(function() {
 				        [1600, 4]
 				      ],
   	  });
+});
 ```
 
 
